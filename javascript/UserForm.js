@@ -116,10 +116,12 @@
 			 */
 			$('div.FieldEditor .MenuHolder .action').entwine({
 				onclick: function(e) {
-					var form = $("#Form_EditForm"),
+					var findform = $("#Form_EditForm"); // form is in page view
+					if( findform.length < 1 ) findform = $("#Form_ItemEditForm"); //form is is modeladmin view
+					var form = findform,
 						length = $(".FieldInfo").length + 1, 
 						fieldType = $(this).siblings("select").val(),
-						formData = form.serialize()+'NewID='+ length +"&Type="+ fieldType, 
+						formData = form.serialize()+'&NewID='+ length +"&Type="+ fieldType, 
 						fieldEditor = $(this).closest('.FieldEditor');
 
 					e.preventDefault();
